@@ -1,0 +1,21 @@
+name: Update GitHub Activity Log
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update README with recent activity
+        uses: TheDanniCraft/activity-log@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
